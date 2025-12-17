@@ -61,8 +61,9 @@ export const MenuView: React.FC<MenuViewProps> = ({ menu, settings, onUpdateMenu
     } else {
       // Add
       const newItem: MenuItem = {
+        costPrice: 0, // Default value as it's required by type but not in form
+        ...(formData as any), // Spread first to allow overwriting if needed, cast to any to avoid TS conflict
         id: crypto.randomUUID(),
-        ...formData as MenuItem
       };
       onUpdateMenu([...menu, newItem]);
       showToast('Item added successfully', 'success');

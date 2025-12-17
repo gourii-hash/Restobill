@@ -63,9 +63,9 @@ export const StaffView: React.FC<StaffViewProps> = ({ staffList, onUpdateStaff, 
     } else {
       // Add
       const newStaff: Staff = {
+        ...(formData as any), // Spread first to allow defaults to be overwritten by explicit values below
         id: crypto.randomUUID(),
         joinedAt: Date.now(),
-        ...formData as Staff,
         status: 'present'
       };
       onUpdateStaff([...staffList, newStaff]);
